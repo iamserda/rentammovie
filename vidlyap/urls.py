@@ -21,6 +21,6 @@ from . import views as vidly_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", vidly_views.handle_home),
+    path("", vidly_views.index),
     path("movies/", include(movies_urls)),
 ]
