@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
+from .models import Movie
 
 # Create your views here.
 def handle_movie_home(request:HttpRequest):
     """ Function handles request for domain/movies"""
-    print(request)
-    return HttpResponse(content="<h1>Movies's home</h1>")
+    movies =  Movie.objects.all().order_by("title")
+
+    return render(request, "movies/index.html", {"movies": movies})
 
 def handle_movie_by_id(request, movie_id):
     """ Function handles request for domain/movies"""
