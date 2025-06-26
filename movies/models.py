@@ -5,6 +5,8 @@ from django.utils import timezone
 
 class Genre(models.Model):
     name = models.CharField(max_length=255)
+    def __str__(self):
+        return f"{self.name}"
 
 class Movie(models.Model):
     title = models.CharField(max_length=255)
@@ -13,3 +15,6 @@ class Movie(models.Model):
     daily_rate = models.FloatField()
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
     created_date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return (self.title, self.release_year, self.number_in_stock, self.daily_rate, self.genre, self.created_date)
