@@ -1,0 +1,5 @@
+{% extends "movies/index.html" %}
+
+{% block nomovieerror %}
+<tr><td colspan=6>Error: No movie was found! {{ movie_id}}</td></tr>
+{% endblock nomovieerror %}

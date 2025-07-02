@@ -7,29 +7,22 @@
         <table class="table table-striped table-bodered table-hover" style="width:1200px; margin: 24px auto 24px ">
             <thead>
                 <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">title</th>
-                    <th scope="col">year</th>
-                    <th scope="col">stock</th>
-                    <th scope="col">rate</th>
-                    <th scope="col">genre</th>
+                    <th scope="col">No.</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Release Year</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Daily Rate</th>
+                    <th scope="col">Genre</th>
                 </tr>
             </thead>
             <tbody>
-                {% for movie in movies %}
-                <tr>
-                    <th scope="row">{{movie.id}}</td>
-                    <td>{{movie.title}}</td>
-                    <td>{{movie.release_year}}</td>
-                    <td>{{movie.number_in_stock}}</td>
-                    <td>{% if movie.daily_rate > 0 %}
-                        ${{movie.daily_rate}}
-                        {% else %}
-                        -
-                        {% endif %}</td>
-                    <td>{{movie.genre}}</td>
-                </tr>
-                {% endfor %}
+                {% if movies|length > 0 %}
+                    {% block moviecontent %}
+                    {% endblock moviecontent %}
+                {% else %}
+                    {% block nomovieerror %}
+                    {% endblock nomovieerror %}
+                {% endif %}
             </tbody>
         </table>
     </div>

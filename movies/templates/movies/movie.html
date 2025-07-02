@@ -1,0 +1,18 @@
+{% extends "movies/index.html" %}
+
+{% block moviecontent %}
+    {% for movie in movies %}
+        <tr>
+            <th scope="row">{{movie.id}}</td>
+            <td>{{movie.title}}</td>
+            <td>{{movie.release_year}}</td>
+            <td>{{movie.number_in_stock}}</td>
+            <td>{% if movie.daily_rate > 0 %}
+                ${{movie.daily_rate}}
+                {% else %}
+                -
+                {% endif %}</td>
+            <td>{{movie.genre}}</td>
+        </tr>
+    {% endfor %}
+{% endblock moviecontent %}
