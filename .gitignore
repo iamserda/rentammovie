@@ -3,5 +3,6 @@
 **/*.sqlite3
 *.sqlite3
 **/*.pyc
-.vscode/launch.json
+**/*.vscode
+.vscode/*
 db.sqlite3
