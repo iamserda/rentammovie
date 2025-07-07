@@ -3,12 +3,19 @@ from django.utils import timezone
 
 
 # Create your models here.
+
+
+class Collection(models.Model):
+    category_name = models.CharField(max_length=255)
+
+
 class Product(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
     inventory = models.IntegerField()
     last_updated = models.DateTimeField(auto_now=True)
+    category = models.ForeignKey(Collection, on_delete=models.PROTECT)
 
 
 class Customer(models.Model):
@@ -20,7 +27,6 @@ class Customer(models.Model):
     MEMBERSHIP_CHOICES = models.CharField(
         max_length=1, choices={"G": "Gold", "S": "Silver", "B": "Bronze"}, default="B"
     )
-    order = models.For
 
 
 class Order(models.Model):
@@ -30,6 +36,7 @@ class Order(models.Model):
         defaults="P",
     )
     order_date = models.DateTimeField(auto_now_add=True)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
 
 class Address(models.Model):
@@ -38,14 +45,9 @@ class Address(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
 
-class Collection(models.Model):
-    category_name = models.CharField(max_length=255)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-
-
 class Cart(models.Model):
     pass
 
-
 class Item(models.Model):
-    product = models.OneToOneField
+    ref_order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    ref_cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
